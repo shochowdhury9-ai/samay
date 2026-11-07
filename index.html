@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kāla-Cakra — Paramāṇu to Mahāpralaya</title>
+  <meta name="description" content="An interactive journey through Hindu cosmic time: from paramāṇu and nimeṣa to yugas, manvantaras, kalpas and mahāpralaya.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Tiro+Devanagari+Sanskrit&family=Cinzel:wght@500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="toran" aria-hidden="true"></div>
+
+  <header class="hero">
+    <span class="diya" aria-hidden="true"></span>
+    <div class="hero-text">
+      <div class="om-top" aria-hidden="true">ॐ</div>
+      <h1>काल-चक्र</h1>
+      <h2>Kāla-Cakra · From Paramāṇu to Mahāpralaya</h2>
+      <p class="shloka">कालोऽस्मि लोकक्षयकृत्प्रवृद्धो लोकान्समाहर्तुमिह प्रवृत्तः ।</p>
+      <p class="shloka-tr">“I am Time, the mighty destroyer of worlds.” — Bhagavad Gītā 11.32</p>
+    </div>
+    <span class="diya" aria-hidden="true"></span>
+  </header>
+
+  <main>
+    <!-- ===================== STAGE ===================== -->
+    <section class="stage">
+      <div class="mandala-wrap">
+        <svg id="mandala" viewBox="-50 -50 700 700" role="img" aria-label="Concentric rings showing progress of each time cycle"></svg>
+        <div id="ringLegend" class="legend"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">बीता हुआ काल · Elapsed cosmic time</div>
+        <div id="elapsed" class="elapsed">0</div>
+        <div class="life">Brahmā's life elapsed: <b id="lifePct">0 %</b></div>
+
+        <ul class="status">
+          <li><em>ब्रह्मा</em><span id="st-brahma">— (press Start)</span></li>
+          <li><em>कल्प</em><span id="st-kalpa">— (press Start)</span></li>
+          <li><em>मन्वन्तर</em><span id="st-manv">— (press Start)</span></li>
+          <li><em>युग</em><span id="st-yuga">— (press Start)</span></li>
+        </ul>
+
+        <div class="controls">
+          <button id="startBtn" class="btn btn-primary">🔱 Start Sṛṣṭi — from Paramāṇu</button>
+          <button id="pauseBtn" class="btn" disabled>❚❚ Pause</button>
+          <button id="resetBtn" class="btn">↺ Reset</button>
+        </div>
+
+        <div class="speeds">
+          <div class="speeds-title">काल-गति · Time speed</div>
+          <div id="speedBtns"></div>
+          <small id="speedNote"></small>
+        </div>
+
+        <div class="opts">
+          <label>Scriptural chain (nimeṣa → day)
+            <select id="chainSel">
+              <option value="bhagavata">Bhāgavata Purāṇa</option>
+              <option value="manu">Manusmṛti</option>
+              <option value="vishnu">Viṣṇu Purāṇa</option>
+            </select>
+          </label>
+          <label>Skip ahead (to see big events)
+            <select id="jumpSel"></select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== COUNTERS ===================== -->
+    <section class="block">
+      <h2 class="sec-title"><span>गणना</span> Count of every completed cycle</h2>
+      <p class="sec-sub">Each box counts how many full loops of that unit have completed since Sṛṣṭi began. A notification appears whenever a loop completes.</p>
+      <div id="counters"></div>
+    </section>
+
+    <!-- ===================== LOG ===================== -->
+    <section class="block">
+      <h2 class="sec-title"><span>घटना-क्रम</span> Event log</h2>
+      <ol id="log" class="log"></ol>
+    </section>
+
+    <!-- ===================== PRALAYA ===================== -->
+    <section class="block">
+      <h2 class="sec-title"><span>प्रलय</span> The dissolutions</h2>
+      <div class="pralaya">
+        <article><h4>नित्य प्रलय</h4><b>Nitya pralaya</b><p>Constant dissolution — continuous change and ending of individual beings.</p></article>
+        <article><h4>नैमित्तिक प्रलय</h4><b>Naimittika pralaya</b><p>At the end of every kalpa, when Brahmā's day ends and the three worlds dissolve.</p></article>
+        <article><h4>प्राकृतिक प्रलय</h4><b>Prākṛtika pralaya</b><p>Elemental dissolution at the end of Brahmā's life of two parārdhas.</p></article>
+        <article><h4>आत्यन्तिक प्रलय</h4><b>Ātyantika pralaya</b><p>Final liberation — when an individual soul is freed from rebirth.</p></article>
+        <article class="big"><h4>महाप्रलय</h4><b>Mahāpralaya</b><p>Not a larger unit after parārdha, but the event that ends Brahmā's full life; generally identified with prākṛtika pralaya. Only the imperishable Brahman remains — and, in the cyclical view, a new Brahmā and new kalpas arise.</p></article>
+      </div>
+    </section>
+
+    <details class="block notes">
+      <summary>About the numbers</summary>
+      <ul>
+        <li>1 ahorātra = 24 h. A human year (saṃvatsara) = 360 days. 1 divine day-night = 1 human year; 1 divine year = 360 human years.</li>
+        <li>Durations of paramāṇu → lava are derived from the nimeṣa value of the chosen chain using the Bhāgavata ratios (16,200 paramāṇu = 1 nimeṣa). With the Bhāgavata nimeṣa (≈ 0.4267 s) one paramāṇu is ≈ 26.3 µs. (The source table lists ≈ 2.63 µs for paramāṇu, which is ten times smaller than its own ratios imply — here the ratios are kept consistent.)</li>
+        <li>Brahmā's day (kalpa) = 14 manvantaras × 71 caturyugas (994 caturyugas) + 15 sandhyā of 4,800 divya-varṣa each (= 6 caturyuga-equivalents) = 1,000 caturyugas. Yuga and manvantara counters therefore run only during Brahmā's day; the equal night is pralaya.</li>
+        <li>Counting uses exact integer arithmetic (BigInt, picoseconds), so counts stay accurate even at 10,000,000× speed. Very large numbers are shown as mantissa ×10<sup>n</sup>.</li>
+        <li>At 10,000,000× it would still take about 10<sup>15</sup> real seconds to reach mahāpralaya, so use “Skip ahead” to witness the big events.</li>
+      </ul>
+    </details>
+  </main>
+
+  <footer>
+    <div class="toran bottom" aria-hidden="true"></div>
+    <p>॥ ॐ तत् सत् ॥ &nbsp;·&nbsp; Kāla-Cakra — an educational visualisation of Purāṇic time</p>
+  </footer>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <div id="overlay" class="overlay">
+    <div class="overlay-box">
+      <div class="om-big">ॐ</div>
+      <h2>महाप्रलय</h2>
+      <h3>Mahāpralaya</h3>
+      <p class="cycle"></p>
+      <p>Brahmā's full life of two parārdhas is complete. The manifested universe is withdrawn; only the imperishable Brahman, the cause of all causes, remains. In the cyclical view, a new Brahmā and a new sequence of kalpas arise.</p>
+      <button id="againBtn" class="btn btn-primary">🪔 नव सृष्टि · Begin anew</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
